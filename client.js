@@ -75,7 +75,6 @@ client.on('connect', () => {
         if (!err) {
             console.log(`Subscribed to topic: ${topic}`)
             sendDataToMqtt()
-            setInterval(sendDataToMqtt, 30000)
         } else {
             console.error('Failed to subscribe:', err)
         }
@@ -118,5 +117,6 @@ async function sendDataToMqtt() {
     if (data && data.length === 0) {
         currentPage = 1
     }
+    setTimeout(sendDataToMqtt, 30000)
     saveCurrentPage(currentPage)
 }
